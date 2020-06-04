@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-const Joi = require("@hapi/joi");
-const passwordComplexity = require("joi-password-complexity");
-const _ = require("lodash");
-const jwt = require("jsonwebtoken");
-const config = require("config");
+const Joi = require("@hapi/joi"); //Object schema validation
+const passwordComplexity = require("joi-password-complexity"); //Creates a Joi object that validates password complexity.
+const _ = require("lodash"); //A modern JavaScript utility library delivering modularity, performance & extras.
+const jwt = require("jsonwebtoken"); //An implementation of JSON Web Tokens.
+const config = require("config"); //Configuration control for production node deployments
 
 const userSchema = new mongoose.Schema(
   {

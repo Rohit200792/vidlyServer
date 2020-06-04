@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const Joi = require("@hapi/joi");
-Joi.objectId = require("joi-objectid")(Joi);
+const Joi = require("@hapi/joi"); //Object schema validation
+Joi.objectId = require("joi-objectid")(Joi); //ObjectId validation support in joi
 
 //create movie schema
 const movieSchema = new mongoose.Schema(

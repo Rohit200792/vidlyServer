@@ -1,0 +1,8 @@
+{"level":"error","message":"Configuration property \"mongodb.password\" is not definedConfiguration property \"mongodb.password\" is not defined","stack":"Error: Configuration property \"mongodb.password\" is not defined\n    at Config.get (C:\\Users\\rohit\\Desktop\\Programming\\Mosh-NodeJS\\vidly\\node_modules\\config\\lib\\config.js:182:11)\n    at Timeout._onTimeout (C:\\Users\\rohit\\Desktop\\Programming\\Mosh-NodeJS\\vidly\\index.js:23:47)\n    at listOnTimeout (internal/timers.js:531:17)\n    at processTimers (internal/timers.js:475:7)"}
+{"message":"Connected to mongodb","level":"info"}
+{"message":"server startup complete","level":"info"}
+{"message":"Connected to mongodb","level":"info"}
+{"message":"server startup complete","level":"info"}
+{"message":"Connected to mongodb","level":"info"}
+{"message":"server startup complete","level":"info"}
+{"message":"Listening on port 3000...","level":"info"}

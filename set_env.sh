@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 export mongodb_password=rohit1234
 

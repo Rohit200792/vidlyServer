@@ -2,6 +2,10 @@
   "name": "vidly",
   "version": "1.0.0",
   "description": "Video Rental Website",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Rohit200792/vidlyServer.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,6 +17,8 @@
     "bcrypt": "^4.0.1",
     "config": "^3.3.1",
     "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
     "fawn": "^2.1.5",
     "joi-objectid": "^3.0.1",
     "joi-password-complexity": "^4.1.0",
@@ -20,6 +26,9 @@
     "lodash": "^4.17.15",
     "mongoose": "^5.9.15",
     "morgan": "^1.10.0",
-    "process": "^0.11.10"
+    "nodemon": "^2.0.4",
+    "process": "^0.11.10",
+    "winston": "^3.2.1",
+    "winston-mongodb": "^5.0.1"
   }
 }

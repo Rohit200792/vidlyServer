@@ -1,5 +1,5 @@
-const jwt = require("jsonwebtoken");
-const config = require("config");
+const jwt = require("jsonwebtoken"); //An implementation of JSON Web Tokens.
+const config = require("config"); //Configuration control for production node deployments
 const auth = (req, res, next) => {
   const token = req.header("x-auth-token");
   if (!token) {
