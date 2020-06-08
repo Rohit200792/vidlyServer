@@ -1,5 +1,6 @@
 const mongoose = require("mongoose"); //Mongoose MongoDB ODM
 const winston = require("winston"); //A logger for just about everything
+const config = require("config");
 
 module.exports = async function (url) {
   //connect to mongoDB cluster
@@ -9,5 +10,5 @@ module.exports = async function (url) {
     useCreateIndex: true, //for using property unique:true in mongoose.Schema
   });
 
-  winston.info("Connected to mongodb");
+  winston.info(`Connected to ${config.get("db")} DB`);
 };

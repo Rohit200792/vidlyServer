@@ -21,10 +21,14 @@ async function startup() {
     //mongodb addess
     const url = `mongodb+srv://rohit:${config.get(
       "mongodb.password"
-    )}@cluster0-yyn3g.mongodb.net/vidly?retryWrites=true&w=majority`;
+    )}@cluster0-yyn3g.mongodb.net/${config.get(
+      "db"
+    )}?retryWrites=true&w=majority`;
 
-    //initiate error logger- mongodb based
-    require("./startup/logging").dbLog(url);
+    if (app.get("env") != "test") {
+      //initiate error logger- mongodb based
+      require("./startup/logging").dbLog(url);
+    }
 
     //to give time to initiate mongodb logger
     setTimeout(async () => {
@@ -34,12 +38,6 @@ async function startup() {
       //add route handlers
       require("./startup/routes")(app);
 
-      const port = process.env.PORT || 3000;
-
-      app.listen(port, () => {
-        winston.info(`Listening on port ${port}...`);
-      });
-
       winston.info("server startup complete");
 
       require("./startup/optional")(app);
@@ -47,4 +45,12 @@ async function startup() {
   }, 1000);
 }
 
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  winston.info(`Listening on port ${port}...`);
+});
+
 startup();
+
+module.exports = app;

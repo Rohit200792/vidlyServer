@@ -1,3 +1,4 @@
 {
-  "name": "VIDLY App"
+  "name": "VIDLY App",
+  "db": "vidly"
 }

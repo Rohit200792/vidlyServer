@@ -1,0 +1,6 @@
+{
+  "db": "vidly_test",
+  "mail": {
+    "host": "test-mail-server"
+  }
+}
