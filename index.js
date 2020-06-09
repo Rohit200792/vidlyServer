@@ -45,12 +45,11 @@ async function startup() {
   }, 1000);
 }
 
-const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
-  winston.info(`Listening on port ${port}...`);
-});
-
 startup();
+
+if (app.get("env") != "test") {
+  //separate app.listen to avoid port in used error in integration testing with supertest
+  require("./app")(app);
+}
 
 module.exports = app;

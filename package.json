@@ -8,7 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose",
+    "test": "jest --verbose --detectOpenHandles --coverage",
     "start": "node index.js"
   },
   "author": "Rohit Singh",

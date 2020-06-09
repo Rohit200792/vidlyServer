@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken"); //An implementation of JSON Web Tokens.
 const config = require("config"); //Configuration control for production node deployments
+const winston = require("winston");
 const auth = (req, res, next) => {
   const token = req.header("x-auth-token");
   if (!token) {

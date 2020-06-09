@@ -1,18 +1,25 @@
-const port = require("../../../index");
-const app = require("../../../index");
 const mongoose = require("mongoose");
-const request = require("supertest")(app);
 const { Genre } = require("../../../models/genre");
 const { User } = require("../../../models/user");
+const app = require("../../../index");
+const request = require("supertest")(app);
+let server;
 
 describe("/api/genres", () => {
-  beforeEach(() => {
-    jest.setTimeout(15000);
+  beforeEach(async () => {
+    server = require("../../../app")(app);
+    jest.setTimeout(15000); //to avoid async callback timeout error
+    await new Promise((resolve) => setTimeout(() => resolve(), 5000)); // give time to connect to DB
   });
 
   afterEach(async () => {
     await Genre.remove({});
+    server.close();
     jest.setTimeout(5000);
+  });
+
+  afterAll(async () => {
+    await new Promise((resolve) => setTimeout(() => resolve(), 500)); // avoid jest open handle error
   });
 
   describe("GET /", () => {
