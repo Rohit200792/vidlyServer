@@ -32,16 +32,19 @@ async function startup() {
 
     //to give time to initiate mongodb logger
     setTimeout(async () => {
+      if (app.get("env") != "test") {
+        //separate app.listen to avoid port in used error in integration testing with supertest
+        require("./app")(app);
+      }
       //connect to db
       await require("./startup/db")(url);
 
-      //add route handlers
-      require("./startup/routes")(app);
-
       if (app.get("env") === "production") {
-        //initiate error logger- mongodb based
         require("./startup/prod")(app);
       }
+
+      //add route handlers
+      require("./startup/routes")(app);
 
       winston.info("server startup complete");
 
@@ -51,10 +54,5 @@ async function startup() {
 }
 
 startup();
-
-if (app.get("env") != "test") {
-  //separate app.listen to avoid port in used error in integration testing with supertest
-  require("./app")(app);
-}
 
 module.exports = app;

@@ -1,0 +1,5 @@
+{"message":"Listening on port 3000...","level":"info"}
+{"message":"Connected to vidly DB","level":"info"}
+{"message":"server startup complete","level":"info"}
+{"message":"Application name: VIDLY App- Production","level":"info"}
+{"message":"Mail Server: prod-mail-server","level":"info"}
