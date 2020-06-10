@@ -21,7 +21,7 @@ const movieSchema = new mongoose.Schema(
       min: 0,
     },
     dailyRentalRate: {
-      type: String,
+      type: Number,
       default: 10,
       min: 0,
     },
@@ -38,6 +38,7 @@ validateMovieReqBody = (req_body) => {
   const schema = Joi.object({
     title: Joi.string().max(50).required(),
     genre: Joi.objectId().required(),
+    dailyRentalRate: Joi.number(),
   });
 
   return schema.validate(req_body);

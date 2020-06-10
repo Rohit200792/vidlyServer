@@ -38,6 +38,11 @@ async function startup() {
       //add route handlers
       require("./startup/routes")(app);
 
+      if (app.get("env") === "production") {
+        //initiate error logger- mongodb based
+        require("./startup/prod")(app);
+      }
+
       winston.info("server startup complete");
 
       require("./startup/optional")(app);

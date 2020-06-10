@@ -11,6 +11,9 @@
     "test": "jest --verbose --detectOpenHandles --coverage",
     "start": "node index.js"
   },
+  "engine": {
+    "node": "12.13.0"
+  },
   "author": "Rohit Singh",
   "license": "ISC",
   "dependencies": {
@@ -21,6 +24,7 @@
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "fawn": "^2.1.5",
+    "helmet": "^3.22.0",
     "joi-objectid": "^3.0.1",
     "joi-password-complexity": "^4.1.0",
     "jsonwebtoken": "^8.5.1",

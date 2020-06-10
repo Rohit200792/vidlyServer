@@ -1,4 +1,4 @@
-config = require("config");
+const config = require("config");
 module.exports = function () {
   if (!config.get("mongodb.password")) {
     throw new Error("mongodb environment variable not set");
