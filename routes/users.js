@@ -5,6 +5,7 @@ const _ = require("lodash"); //A modern JavaScript utility library delivering mo
 
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
+const objectid = require("../middleware/objectid");
 
 const { User, validate } = require("../models/user");
 
@@ -49,4 +50,13 @@ router.get("/", [auth, admin], async (req, res) => {
   );
 });
 
+//read all user details by id
+router.get("/:id", [auth, admin, objectid], async (req, res) => {
+  let user = await User.findById(req.params.id);
+  if (!user) {
+    return res.status(404).send("Data Not Found");
+  } else {
+    return res.send(_.pick(user, ["_id", "name"]));
+  }
+});
 module.exports = router;

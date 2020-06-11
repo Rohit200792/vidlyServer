@@ -4,6 +4,7 @@ const { Movie, validate } = require("../models/movie");
 
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
+const objectid = require("../middleware/objectid");
 const { Genre } = require("../models/genre");
 
 const router = express.Router();
@@ -30,10 +31,7 @@ router.get("/", async (req, res) => {
 });
 
 //read movies by id
-router.get("/:id", async (req, res) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    return res.status(400).send("ObjectId format is not valid");
-  }
+router.get("/:id", objectid, async (req, res) => {
   const movie = await Movie.findById(req.params.id).populate("genre");
   if (!movie) {
     return res.status(404).send("Data Not Found");
@@ -43,10 +41,7 @@ router.get("/:id", async (req, res) => {
 });
 
 //update movies by id
-router.put("/:id", [auth, admin], async (req, res, next) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    return res.status(400).send("ObjectId format is not valid");
-  }
+router.put("/:id", [auth, admin, objectid], async (req, res, next) => {
   if (req.body.genre != undefined) {
     const genre = await Genre.findById(req.body.genre);
     if (!genre) {
@@ -65,10 +60,7 @@ router.put("/:id", [auth, admin], async (req, res, next) => {
 });
 
 //delete movie by id
-router.delete("/:id", [auth, admin], async (req, res, next) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    return res.status(400).send("ObjectId format is not valid");
-  }
+router.delete("/:id", [auth, admin, objectid], async (req, res, next) => {
   const movie = await Movie.findByIdAndRemove(req.params.id);
   if (!movie) {
     return res.status(404).send("Data Not Found");

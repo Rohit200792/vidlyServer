@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 const auth = require("../middleware/auth");
 const admin = require("../middleware/admin");
+const objectid = require("../middleware/objectid");
 const asyncMiddleware = require("../middleware/async");
 
 const { Genre, validate } = require("../models/genre");
@@ -36,10 +37,8 @@ router.get(
 //read genres by id
 router.get(
   "/:id",
+  objectid,
   asyncMiddleware(async (req, res) => {
-    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-      return res.status(400).send("ObjectId format is not valid");
-    }
     const genre = await Genre.findById(req.params.id);
     if (!genre) {
       return res.status(404).send("Data Not Found");
@@ -52,11 +51,8 @@ router.get(
 //update genres by id
 router.put(
   "/:id",
-  [auth, admin],
+  [auth, admin, objectid],
   asyncMiddleware(async (req, res) => {
-    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-      return res.status(400).send("ObjectId format is not valid");
-    }
     const genre = await Genre.findByIdAndUpdate(
       req.params.id,
       { name: req.body.name },
@@ -73,11 +69,8 @@ router.put(
 //delete genre by id
 router.delete(
   "/:id",
-  [auth, admin],
+  [auth, admin, objectid],
   asyncMiddleware(async (req, res, next) => {
-    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-      return res.status(400).send("ObjectId format is not valid");
-    }
     const genre = await Genre.findByIdAndRemove(req.params.id);
     if (!genre) {
       return res.status(404).send("Data Not Found");
